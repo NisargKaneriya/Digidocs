@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446173108382",
+    "project_id": "digidocs-cf08e",
+    "storage_bucket": "digidocs-cf08e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446173108382:android:31e07253f2ead3e972c38f",
+        "android_client_info": {
+          "package_name": "com.example.digidocs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6JP6bfiZ1TKMjMJvTIjKW43qFbNzLnSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
