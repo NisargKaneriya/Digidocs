@@ -1,4 +1,5 @@
 import 'package:digidocs/screens/Signup.dart';
+import 'package:digidocs/screens/camerascreens/imagepreviewscreen.dart';
 import 'package:digidocs/screens/camerascreens/maincamerascreen.dart';
 import 'package:digidocs/screens/documentscreens/addharcard.dart';
 import 'package:digidocs/screens/emailverification.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SplashScreen()
+        home: Addharcard()
       // const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
