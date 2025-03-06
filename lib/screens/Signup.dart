@@ -46,7 +46,8 @@ class _SignupScreenState extends State<SignupScreen> {
           body: Center(
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(
-                horizontal: screenWidth < 600 ? 16.0 : screenWidth * 0.2,
+                horizontal: screenWidth < 600 ? 16.0 : screenWidth * 0.15,
+                vertical: screenWidth < 600 ? 10.0 : 20.0,
               ),
               child: Form(
                 key: _formKey,
@@ -54,13 +55,30 @@ class _SignupScreenState extends State<SignupScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                      child: Image.asset("assets/images/singup.png", height: 250, width: screenWidth * 0.8),
+                      child: Image.asset(
+                        "assets/images/singup.png",
+                        height: screenWidth < 400 ? 115 : 220,
+                        width: screenWidth * 0.8,
+                      ),
                     ),
                     SizedBox(height: 20),
-                    Text('Create Account',
-                        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40.0, color: Colors.white)),
-                    Text('Securely store and manage your documents—create your account today!',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white)),
+                    Text(
+                      'Create Account',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: screenWidth < 400 ? 32.0 : 40.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Securely store and manage your documents create your account today!',
+                      style: TextStyle(
+                        fontSize: screenWidth < 400 ? 16 : 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ),
                     SizedBox(height: 30),
                     buildInputField("Email", email, "Enter Your Email", false),
                     SizedBox(height: 10),
@@ -113,7 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
         SizedBox(height: 4.0),
         TextFormField(
           controller: controller,
-          obscureText: obscure && isPassword,
+          obscureText: isPassword ? obscure : false,
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
             labelText: hint,
