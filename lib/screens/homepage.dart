@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:digidocs/components/customsidebar.dart';
 import 'package:digidocs/screens/Signup.dart';
 import 'package:digidocs/screens/documentscreens/addharcard.dart';
 import 'package:digidocs/screens/documentscreens/banking.dart';
@@ -7,8 +8,10 @@ import 'package:digidocs/screens/documentscreens/covidvaccine.dart';
 import 'package:digidocs/screens/documentscreens/drivinglincense.dart';
 import 'package:digidocs/screens/documentscreens/healthandwellness.dart';
 import 'package:digidocs/screens/documentscreens/hscmarksheet.dart';
+import 'package:digidocs/screens/documentscreens/idcard.dart';
 import 'package:digidocs/screens/documentscreens/incomecertificate.dart';
 import 'package:digidocs/screens/documentscreens/otherdocs.dart';
+import 'package:digidocs/screens/documentscreens/pancard.dart';
 import 'package:digidocs/screens/documentscreens/passport.dart';
 import 'package:digidocs/screens/documentscreens/rationcard.dart';
 import 'package:digidocs/screens/documentscreens/sportsandcultural.dart';
@@ -36,23 +39,27 @@ class _HomepageState extends State<Homepage> {
   }
 
   final List<Map<String, dynamic>> scanOptions = [
-    {"title": "Aadhar Card", "subtitle": "Scan Aadhar Card", "icon": Icons.credit_card, "screen": Addharcard()},
-    {"title": "Banking Docs", "subtitle": "Scan Banking Documents", "icon": Icons.account_balance, "screen": Banking()},
-    {"title": "Driving License", "subtitle": "Scan Driving License", "icon": Icons.directions_car, "screen": Drivinglincense()},
-    {"title": "Passports", "subtitle": "Scan Passports", "icon": Icons.flight, "screen": Passport()},
-    {"title": "Bills & Receipts", "subtitle": "Scan Your Bills", "icon": Icons.receipt_long, "screen": Billsandreceipts()},
-    {"title": "HSC Marksheet", "subtitle": "Scan Marksheet", "icon": Icons.school, "screen": Hscmarksheet()},
-    {"title": "SSC Marksheet", "subtitle": "Scan Marksheet", "icon": Icons.school, "screen": Sscmarksheet()},
-    {"title": "Univeristy Marksheet", "subtitle": "Scan Marksheet", "icon": Icons.school, "screen": Univerisitymarksheet()},
-    {"title": "Income Certificates", "subtitle": "Scan Certificates", "icon": Icons.receipt_long, "screen": Incomecertificate()},
-    {"title": "Ration Certificates", "subtitle": "Scan Certificates", "icon": Icons.add_card, "screen": Rationcard()},
-    {"title": "Vehicle Ragistration", "subtitle": "Scan RC", "icon": Icons.car_rental, "screen": Vehicleragistration()},
-    {"title": "Sports and cultural", "subtitle": "Scan Certificates", "icon": Icons.sports_baseball_outlined, "screen": Sportsandcultural()},
-    {"title": "Health and Wellness", "subtitle": "Scan Certificates", "icon": Icons.health_and_safety_outlined, "screen": Healthandwellness()},
-    {"title": "Transportation", "subtitle": "Scan Certificates", "icon": Icons.emoji_transportation, "screen": Transportaional()},
-    {"title": "Covid Certificates", "subtitle": "Scan Certificates", "icon": Icons.receipt_outlined, "screen": Covidvaccine()},
-    {"title": "Other Docs", "subtitle": "Scan Document", "icon": Icons.document_scanner_outlined, "screen": Otherdocs()},
+    {"title": "Aaddhar Card", "subtitle": "Scan Aaddhar Card", "icon": Icons.credit_card, "screen": Addharcard(section: "adharcard",)},
+    {"title": "Banking Docs", "subtitle": "Scan Banking Documents", "icon": Icons.account_balance, "screen": Banking(section: "banking",), },
+    {"title": "Driving License", "subtitle": "Scan Driving License", "icon": Icons.directions_car, "screen": Drivinglincense(section: "drivinglincense",),},
+    {"title": "Passports", "subtitle": "Scan Passports", "icon": Icons.flight, "screen": Passport(section: "passport",),},
+    {"title": "Bills & Receipts", "subtitle": "Scan Your Bills", "icon": Icons.receipt_long, "screen": Billsandreceipts(section: "billsandreceipts",), },
+    {"title": "HSC Marksheet", "subtitle": "Scan Marksheet", "icon": Icons.school, "screen": Hscmarksheet(section: "hscmarksheet",),},
+    {"title": "SSC Marksheet", "subtitle": "Scan Marksheet", "icon": Icons.school, "screen": Sscmarksheet(section: "sscmarksheet",), },
+    {"title": "University Marksheet", "subtitle": "Scan Marksheet", "icon": Icons.school, "screen": Univerisitymarksheet(section: "univerisitymarksheet",),},
+    {"title": "Income Certificates", "subtitle": "Scan Certificates", "icon": Icons.receipt_long, "screen": Incomecertificate(section: "incomecertificate",), },
+    {"title": "Ration Certificates", "subtitle": "Scan Certificates", "icon": Icons.add_card, "screen": Rationcard(section: "rationcard",), },
+    {"title": "Vehicle Registration", "subtitle": "Scan RC", "icon": Icons.car_rental, "screen": Vehicleragistration(section: "vehicleragistration",),},
+    {"title": "Sports and Cultural", "subtitle": "Scan Certificates", "icon": Icons.sports_baseball_outlined, "screen": Sportsandcultural(section: "sportsandcultural",), },
+    {"title": "Health and Wellness", "subtitle": "Scan Certificates", "icon": Icons.health_and_safety_outlined, "screen": Healthandwellness(section: "healthandwellness",), },
+    {"title": "Transportation", "subtitle": "Scan Certificates", "icon": Icons.emoji_transportation, "screen": Transportaional(section: "transportaional",),},
+    {"title": "Idcard", "subtitle": "Scan Certificates", "icon": Icons.add_card_rounded, "screen": Idcard(section: "idcard",),},
+    {"title": "Pancard", "subtitle": "Scan Certificates", "icon": Icons.pan_tool_alt, "screen": Pancard(section: "pancard",),},
+    {"title": "Transportation", "subtitle": "Scan Certificates", "icon": Icons.emoji_transportation, "screen": Transportaional(section: "transportaional",),},
+    {"title": "Covid Certificates", "subtitle": "Scan Certificates", "icon": Icons.receipt_outlined, "screen": Covidvaccine(section: "covidvaccine",), },
+    {"title": "Other Docs", "subtitle": "Scan Document", "icon": Icons.document_scanner_outlined, "screen": Otherdocs(section: "otherdocs",), },
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,28 +68,16 @@ class _HomepageState extends State<Homepage> {
 
     return Scaffold(
       backgroundColor: const Color(0xFF1E1E2E),
+      drawer: CustomSidebar(),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             title: Text("DigiDocs" , style: TextStyle(color: Colors.white ,fontSize: screenWidth * 0.07),),
             backgroundColor: Color(0xFF535C91),
+            iconTheme: IconThemeData(color: Colors.white),
             elevation: 0,
             pinned: true,
             floating: false,
-            leading: IconButton(
-              icon: Icon(Icons.menu, size: screenWidth * 0.07, color: Colors.white),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.logout, size: screenWidth * 0.07, color: Colors.white),
-                onPressed: () {
-                  signout();
-                },
-              ),
-            ],
           ),
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04, vertical: screenHeight * 0.02),

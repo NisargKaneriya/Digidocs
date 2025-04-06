@@ -4,6 +4,8 @@ import 'package:digidocs/screens/resetpassword.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,16 +25,41 @@ class _LoginScreenState extends State<LoginScreen> {
       isloading = true;
     });
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email.text, password: password.text);
+      // Sign in the user with Firebase
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email.text,
+          password: password.text
+      );
 
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Homepage()));
+      // Get the Firebase ID token
+      String? token = await userCredential.user?.getIdToken();
+
+      if (token == null) {
+        throw Exception("Failed to retrieve ID token.");
+      }
+
+      // Send the token to the Node.js backend
+      final response = await http.post(
+        Uri.parse("http://10.0.2.2:3000/api/auth/register"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      );
+
+      final responseData = json.decode(response.body);
+
+      if (response.statusCode == 200) {
+        Get.offAll(Homepage());
+      } else {
+        throw Exception(responseData["message"] ?? "Login failed.");
+      }
     } on FirebaseAuthException catch (e) {
-      Get.snackbar("Error Message", e.code);
+      Get.snackbar("Error Message", e.message ?? "Authentication failed.");
     } catch (e) {
       Get.snackbar("Error Message", e.toString());
     }
+
     setState(() {
       isloading = false;
     });
@@ -140,3 +167,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
